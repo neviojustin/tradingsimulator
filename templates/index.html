@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>TOTAL</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="3"></td>
+                <td><i><b>Total Holdings</b></i></td>
+                <td style="border: 3px solid black"><b><mark>{{ grand_total }}</mark></b></td>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for holding in holdings %}
+                <tr>
+                    <td>{{ holding["stock_symbol"] }}</td>
+                    <td>{{ holding["stock_name"] }}</td>
+                    <td>{{ holding["SUM(amount)"] }}</td>
+                    <td>{{ holding["price"] }}</td>
+                    <td>{{ holding["stock_total"] }}</td>
+                </tr>
+            {% endfor %}
+
+            <tr>
+                <td colspan="4">CASH</td>
+                <td>{{ balance }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
+CREATE TABLE 'transactions' ('user_id' INT, 'datetime' DATETIME, 'stock_name' VARCHAR(255), 'stock_symbol' VARCHAR(6), 'then_price' NUMERIC, 'amount' INT, FOREIGN KEY(user_id) REFERENCES users(id));

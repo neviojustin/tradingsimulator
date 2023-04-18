@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Confirmation
+{% endblock %}
+
+{% block main %}
+    <h2><b>ORDER CONFIRMATION</b></h2>
+    <h3>ORDER : {{ amount }}x <u>{{ stockname }}</u>(<b>{{ symbol }}</b>) stock at {{ price }} each?</h2>
+    <hr>
+    <h3>TOTAL :<mark><b>{{ total }}</b></mark></h3>
+    <form class="pt-2" action="/buy" method="post">
+        <input class = "btn btn-success" name="reply" type="submit" value="Proceed">
+    </form>
+
+    <form class="pt-2" action="/buy" method="post">
+        <input class = "btn btn-danger" name="reply" type="submit" value="Cancel">
+    </form>
+{% endblock %}
